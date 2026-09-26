@@ -15,28 +15,25 @@ Forekey Technologies builds intelligent, scalable digital products for teams wor
 
 ## Website
 
-| URL | When it works |
-|-----|----------------|
-| **https://forekeytech.github.io/forekeytech/** | Repo is **`forekeytech/forekeytech`** and GitHub Pages is **enabled** (see below) |
-| **https://forekeytech.github.io/** | Only if you have a separate repo named exactly **`forekeytech.github.io`** |
+### Live site (use this link)
+
+**https://forekeytech.github.io/forekeytech/**
 
 Repository: [github.com/forekeytech/forekeytech](https://github.com/forekeytech/forekeytech)
 
-> **Note:** GitHub username is **`forekeytech`** (with “e”). Links using **`forkeytech`** (without “e”) will not work.
+### URLs that will **not** work
 
-### Why the site shows 404 after commit
+| Wrong URL | Why |
+|-----------|-----|
+| `https://forkeytech.github.io/...` | Old username spelling — account is **`forekeytech`** (with **e**) |
+| `https://forekeytech.github.io/` | Root URL only works with a repo named **`forekeytech.github.io`**, not `forekeytech` |
+| Opening only `github.com/...` | That is the code repo, not the public website |
 
-Pushing code does **not** turn on GitHub Pages. You must enable it once:
+### Shorter URL (optional)
 
-1. Open [Settings → Pages](https://github.com/forekeytech/forekeytech/settings/pages) for this repo.  
-2. **Build and deployment → Source:** Deploy from a branch  
-3. **Branch:** `main` · **Folder:** `/ (root)` → **Save**  
-4. Wait 1–5 minutes until GitHub shows *“Your site is live at …”*  
-5. Visit **https://forekeytech.github.io/forekeytech/**
+To use **https://forekeytech.github.io/** with no `/forekeytech/` path, create a public repo named **`forekeytech.github.io`**, copy these files to its `main` branch, and enable Pages on that repo.
 
-Repo must be **public** (on GitHub Free) for Pages on this plan.
-
-Open `index.html` locally anytime to preview without Pages.
+Open `index.html` locally anytime to preview without GitHub.
 
 ## Contact
 
