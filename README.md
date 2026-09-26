@@ -37,7 +37,7 @@ Open `index.html` locally anytime to preview without GitHub.
 
 ## Contact
 
-- **Email:** [hello@forekeytechnologies.com](mailto:hello@forekeytechnologies.com)  
+- **Email:** [mjphp79@gmail.com](mailto:mjphp79@gmail.com)  
 - **Consultation:** Use the contact form on the website  
 
 ## About this repository
