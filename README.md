@@ -15,9 +15,28 @@ Forekey Technologies builds intelligent, scalable digital products for teams wor
 
 ## Website
 
-Live site: [https://forkeytech.github.io/forekeytech/](https://forkeytech.github.io/forekeytech/)
+| URL | When it works |
+|-----|----------------|
+| **https://forekeytech.github.io/forekeytech/** | Repo is **`forekeytech/forekeytech`** and GitHub Pages is **enabled** (see below) |
+| **https://forekeytech.github.io/** | Only if you have a separate repo named exactly **`forekeytech.github.io`** |
 
-Open `index.html` locally to preview the same content.
+Repository: [github.com/forekeytech/forekeytech](https://github.com/forekeytech/forekeytech)
+
+> **Note:** GitHub username is **`forekeytech`** (with “e”). Links using **`forkeytech`** (without “e”) will not work.
+
+### Why the site shows 404 after commit
+
+Pushing code does **not** turn on GitHub Pages. You must enable it once:
+
+1. Open [Settings → Pages](https://github.com/forekeytech/forekeytech/settings/pages) for this repo.  
+2. **Build and deployment → Source:** Deploy from a branch  
+3. **Branch:** `main` · **Folder:** `/ (root)` → **Save**  
+4. Wait 1–5 minutes until GitHub shows *“Your site is live at …”*  
+5. Visit **https://forekeytech.github.io/forekeytech/**
+
+Repo must be **public** (on GitHub Free) for Pages on this plan.
+
+Open `index.html` locally anytime to preview without Pages.
 
 ## Contact
 
@@ -31,6 +50,3 @@ Source for the official Forekey Technologies marketing website (HTML, brand asse
 ---
 
 © Forekey Technologies. All rights reserved.
-# forekeytech
-# forekeytech
-# forekeytech
