@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Forekey Technologies — AI-powered RAG, agents, computer vision, and full-stack engineering for global teams.">
+    <meta name="theme-color" content="#00142f">
+    <title>Forekey Technologies — AI-Powered Solutions</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        forekey: {
+                            dark: '#010914',
+                            navy: '#00142f',
+                            surface: '#0d2847',
+                            surfaceLight: '#135778',
+                            cyan: '#00D2C8',
+                            cyanBright: '#00f0ff',
+                            teal: '#177a87',
+                            tealMid: '#50a1a8',
+                            amber: '#FF9933',
+                        }
+                    },
+                    boxShadow: {
+                        'glow-cyan': '0 0 25px -5px rgba(0, 210, 200, 0.35)',
+                        'glow-cyan-strong': '0 0 35px 0px rgba(0, 240, 255, 0.45)',
+                        'glow-card': '0 10px 30px -10px rgba(0, 210, 200, 0.12)',
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'radial-gradient(circle at 50% 15%, rgba(80, 161, 168, 0.18) 0%, rgba(0, 20, 47, 0.92) 55%, #010914 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #010914; color: #E2E8F0; overflow-x: hidden; }
+        .text-glow-gradient {
+            background: linear-gradient(135deg, #fff 15%, #00f0ff 55%, #50a1a8 100%);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .border-glow { border: 1px solid rgba(0, 210, 200, 0.22); transition: all 0.25s ease; }
+        .border-glow:hover { border-color: rgba(0, 240, 255, 0.5); box-shadow: 0 0 18px rgba(0, 210, 200, 0.18); }
+        .glass-panel {
+            background: rgba(13, 40, 71, 0.55);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(80, 161, 168, 0.15);
+        }
+        .glass-header {
+            background: rgba(0, 20, 47, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(80, 161, 168, 0.2);
+        }
+        #neural-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .skip-link {
+            position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+        }
+        .skip-link:focus {
+            position: fixed; left: 1rem; top: 1rem; z-index: 100; width: auto; height: auto;
+            padding: 0.5rem 1rem; background: #00D2C8; color: #00142f; font-weight: 600; border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="relative selection:bg-forekey-cyan selection:text-forekey-dark">
+
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[4.5rem] flex items-center justify-between">
+            <a href="#" class="flex items-center shrink-0 group" aria-label="Forekey Technologies — home">
+                <img src="logo.png" alt="Forekey Technologies — AI-Powered Solutions" class="h-10 sm:h-11 w-auto max-w-[min(100%,220px)] sm:max-w-[260px] object-contain object-left opacity-95 group-hover:opacity-100 transition-opacity" width="260" height="48" onerror="this.onerror=null; this.src='favicon.png'; this.classList.add('h-9','w-9','max-w-none');">
+            </a>
+
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300" aria-label="Primary">
+                <a href="#services" class="hover:text-forekey-cyanBright transition-colors">Services</a>
+                <a href="#solutions" class="hover:text-forekey-cyanBright transition-colors">Solutions</a>
+                <a href="#stack" class="hover:text-forekey-cyanBright transition-colors">Tech Stack</a>
+                <a href="#about" class="hover:text-forekey-cyanBright transition-colors">About</a>
+                <a href="#contact" class="hover:text-forekey-cyanBright transition-colors">Contact</a>
+            </nav>
+
+            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-forekey-teal to-forekey-cyan text-forekey-dark font-bold text-sm shadow-glow-cyan hover:shadow-glow-cyan-strong transition-all">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                Book consultation
+            </a>
+
+            <button type="button" id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl border border-forekey-cyan/25 text-forekey-cyan" aria-label="Open menu" aria-expanded="false">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-b border-forekey-tealMid/25 bg-forekey-navy/98 px-4 py-4 space-y-1">
+            <a href="#services" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-forekey-surface text-slate-200">Services</a>
+            <a href="#solutions" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-forekey-surface text-slate-200">Solutions</a>
+            <a href="#stack" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-forekey-surface text-slate-200">Tech Stack</a>
+            <a href="#about" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-forekey-surface text-slate-200">About</a>
+            <a href="#contact" class="mobile-nav-link block px-3 py-2.5 rounded-lg hover:bg-forekey-surface text-slate-200">Contact</a>
+            <a href="#contact" class="block text-center mt-3 py-3 rounded-xl bg-gradient-to-r from-forekey-teal to-forekey-cyan text-forekey-dark font-bold">Book consultation</a>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="relative pt-28 pb-16 md:pt-36 md:pb-24 bg-hero-gradient overflow-hidden" aria-labelledby="hero-title">
+            <canvas id="neural-canvas" aria-hidden="true"></canvas>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-4xl mx-auto space-y-5">
+                    <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forekey-surface/70 border border-forekey-tealMid/35 text-forekey-cyanBright text-xs sm:text-sm font-semibold uppercase tracking-wider">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        Global AI &amp; software engineering
+                    </p>
+                    <h1 id="hero-title" class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight leading-tight text-white">
+                        Building intelligent, scalable,<br class="hidden sm:block">
+                        <span class="text-glow-gradient">modern digital products</span>
+                    </h1>
+                    <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+                        Transforming ideas into practical AI solutions worldwide.
+                    </p>
+                    <p class="text-sm sm:text-base text-slate-400 max-w-3xl mx-auto">
+                        RAG systems, autonomous agents, computer vision, and full-stack web &amp; mobile — from discovery through production MLOps.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-3 pt-2">
+                        <a href="#contact" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-forekey-teal to-forekey-cyan text-forekey-dark font-bold shadow-glow-cyan hover:shadow-glow-cyan-strong transition-all inline-flex items-center justify-center gap-2">
+                            Get a free consultation <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#services" class="px-8 py-3.5 rounded-xl border border-forekey-tealMid/40 text-slate-200 font-semibold hover:bg-forekey-surface/80 transition-all inline-flex items-center justify-center gap-2">
+                            <i data-lucide="layers" class="w-5 h-5 text-forekey-cyan"></i> View services
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 max-w-6xl mx-auto rounded-2xl p-1 bg-gradient-to-r from-forekey-cyan/30 via-forekey-tealMid/20 to-forekey-amber/15 border border-forekey-tealMid/30 shadow-2xl">
+                    <img src="banner.png" alt="Forekey Technologies capabilities overview" class="w-full h-auto rounded-xl" width="1200" height="350" loading="eager">
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 md:py-24 bg-forekey-navy/40 border-y border-forekey-tealMid/15">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <header class="text-center max-w-2xl mx-auto mb-12">
+                    <p class="text-xs font-mono text-forekey-cyanBright uppercase tracking-widest mb-2">What we do</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Core AI &amp; engineering services</h2>
+                    <p class="text-slate-400 mt-3 text-sm sm:text-base">Production-focused delivery with clear architecture, security, and measurable outcomes.</p>
+                </header>
+
+                <div class="mb-12 rounded-2xl glass-panel p-4 sm:p-6">
+                    <img src="services.png" alt="RAG, AI agents, computer vision, automation, APIs" class="w-full max-h-[400px] object-contain mx-auto" loading="lazy">
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="p-7 rounded-2xl glass-panel border-glow">
+                        <div class="w-12 h-12 rounded-lg bg-forekey-cyan/10 border border-forekey-cyan/30 flex items-center justify-center text-forekey-cyan mb-4"><i data-lucide="database" class="w-6 h-6"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">RAG &amp; knowledge bases</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Enterprise data connected to LLMs with vector search, citations, and evaluation.</p>
+                        <p class="mt-4 text-xs font-mono text-forekey-tealMid">LangChain · LlamaIndex · Pinecone</p>
+                    </article>
+                    <article class="p-7 rounded-2xl glass-panel border-glow">
+                        <div class="w-12 h-12 rounded-lg bg-forekey-cyan/10 border border-forekey-cyan/30 flex items-center justify-center text-forekey-cyan mb-4"><i data-lucide="bot" class="w-6 h-6"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Autonomous AI agents</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Tool-using agents for workflows, integrations, and multi-step automation.</p>
+                        <p class="mt-4 text-xs font-mono text-forekey-tealMid">CrewAI · function calling · orchestration</p>
+                    </article>
+                    <article class="p-7 rounded-2xl glass-panel border-glow">
+                        <div class="w-12 h-12 rounded-lg bg-forekey-cyan/10 border border-forekey-cyan/30 flex items-center justify-center text-forekey-cyan mb-4"><i data-lucide="eye" class="w-6 h-6"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Computer vision</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Detection, inspection, and video analytics for operations and quality teams.</p>
+                        <p class="mt-4 text-xs font-mono text-forekey-tealMid">OpenCV · YOLO · PyTorch</p>
+                    </article>
+                    <article class="p-7 rounded-2xl glass-panel border-glow">
+                        <div class="w-12 h-12 rounded-lg bg-forekey-cyan/10 border border-forekey-cyan/30 flex items-center justify-center text-forekey-cyan mb-4"><i data-lucide="smartphone" class="w-6 h-6"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Web &amp; mobile apps</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Dashboards, portals, and mobile apps with modern UX and performance.</p>
+                        <p class="mt-4 text-xs font-mono text-forekey-tealMid">React · Next.js · Flutter</p>
+                    </article>
+                    <article class="p-7 rounded-2xl glass-panel border-glow">
+                        <div class="w-12 h-12 rounded-lg bg-forekey-cyan/10 border border-forekey-cyan/30 flex items-center justify-center text-forekey-cyan mb-4"><i data-lucide="network" class="w-6 h-6"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">APIs &amp; backend</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Scalable services, integrations, and observability for high-traffic systems.</p>
+                        <p class="mt-4 text-xs font-mono text-forekey-tealMid">FastAPI · Node.js · Python · Go</p>
+                    </article>
+                    <article class="p-7 rounded-2xl glass-panel border-glow">
+                        <div class="w-12 h-12 rounded-lg bg-forekey-cyan/10 border border-forekey-cyan/30 flex items-center justify-center text-forekey-cyan mb-4"><i data-lucide="cloud" class="w-6 h-6"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Cloud &amp; MLOps</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">CI/CD for models, monitoring, and cost-aware deployment on AWS/GCP.</p>
+                        <p class="mt-4 text-xs font-mono text-forekey-tealMid">Docker · Kubernetes · AWS · GCP</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions" class="py-20 md:py-24 bg-forekey-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <header class="text-center max-w-2xl mx-auto mb-12">
+                    <p class="text-xs font-mono text-forekey-amber uppercase tracking-widest mb-2">Outcomes</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Solutions for real business problems</h2>
+                </header>
+                <div class="grid sm:grid-cols-2 gap-6 mb-14">
+                    <div class="p-6 rounded-xl glass-panel border-glow flex gap-4">
+                        <i data-lucide="messages-square" class="w-8 h-8 text-forekey-cyan shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Enterprise copilots</h3>
+                            <p class="text-sm text-slate-400 mt-1">Secure Q&amp;A over docs, tickets, and policies with audit trails.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl glass-panel border-glow flex gap-4">
+                        <i data-lucide="scan-eye" class="w-8 h-8 text-forekey-amber shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Vision &amp; QA automation</h3>
+                            <p class="text-sm text-slate-400 mt-1">Camera pipelines for defects, safety, and real-time alerts.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl glass-panel border-glow flex gap-4">
+                        <i data-lucide="workflow" class="w-8 h-8 text-forekey-amber shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Agentic automation</h3>
+                            <p class="text-sm text-slate-400 mt-1">Reduce manual ops by connecting CRM, ERP, and custom APIs.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl glass-panel border-glow flex gap-4">
+                        <i data-lucide="rocket" class="w-8 h-8 text-forekey-cyan shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-white">Product engineering</h3>
+                            <p class="text-sm text-slate-400 mt-1">MVPs and scale-ups with AI features shipped in cohesive releases.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl border border-forekey-tealMid/20 bg-forekey-navy/50 p-8">
+                    <h3 class="text-center font-bold text-white mb-8">How we work</h3>
+                    <ol class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none text-center text-sm">
+                        <li><span class="inline-flex w-9 h-9 items-center justify-center rounded-full bg-forekey-cyan/15 text-forekey-cyanBright font-mono text-xs font-bold mb-2">01</span><p class="font-semibold text-white">Discover</p><p class="text-slate-500 text-xs mt-1">Goals, data, risks</p></li>
+                        <li><span class="inline-flex w-9 h-9 items-center justify-center rounded-full bg-forekey-amber/15 text-forekey-amber font-mono text-xs font-bold mb-2">02</span><p class="font-semibold text-white">Prototype</p><p class="text-slate-500 text-xs mt-1">Architecture &amp; POC</p></li>
+                        <li><span class="inline-flex w-9 h-9 items-center justify-center rounded-full bg-forekey-cyan/15 text-forekey-cyanBright font-mono text-xs font-bold mb-2">03</span><p class="font-semibold text-white">Build</p><p class="text-slate-500 text-xs mt-1">Agile delivery</p></li>
+                        <li><span class="inline-flex w-9 h-9 items-center justify-center rounded-full bg-forekey-amber/15 text-forekey-amber font-mono text-xs font-bold mb-2">04</span><p class="font-semibold text-white">Operate</p><p class="text-slate-500 text-xs mt-1">Monitor &amp; improve</p></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack" class="py-16 md:py-20 bg-forekey-navy border-y border-forekey-tealMid/15">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <header class="text-center mb-10">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Technology stack</h2>
+                    <p class="text-slate-400 text-sm mt-2">Tools we use in production every day</p>
+                </header>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <div class="p-4 rounded-xl glass-panel text-center text-sm"><span class="font-bold text-forekey-cyanBright">Python</span><br><span class="text-xs text-slate-500">AI core</span></div>
+                    <div class="p-4 rounded-xl glass-panel text-center text-sm"><span class="font-bold text-forekey-cyanBright">PyTorch</span><br><span class="text-xs text-slate-500">ML</span></div>
+                    <div class="p-4 rounded-xl glass-panel text-center text-sm"><span class="font-bold text-forekey-cyanBright">OpenAI / Claude</span><br><span class="text-xs text-slate-500">LLMs</span></div>
+                    <div class="p-4 rounded-xl glass-panel text-center text-sm"><span class="font-bold text-forekey-cyanBright">FastAPI</span><br><span class="text-xs text-slate-500">APIs</span></div>
+                    <div class="p-4 rounded-xl glass-panel text-center text-sm"><span class="font-bold text-forekey-cyanBright">React / Next</span><br><span class="text-xs text-slate-500">Web</span></div>
+                    <div class="p-4 rounded-xl glass-panel text-center text-sm"><span class="font-bold text-forekey-cyanBright">AWS / K8s</span><br><span class="text-xs text-slate-500">Cloud</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 md:py-24 bg-forekey-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-xs font-mono text-forekey-tealMid uppercase tracking-widest mb-2">About us</p>
+                    <h2 class="text-3xl font-extrabold text-white mb-4">Your partner for secure, global AI engineering</h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                        Forekey Technologies blends AI research depth with product discipline. We help startups and enterprises ship systems that stay reliable in production — with innovation, trust, and worldwide collaboration.
+                    </p>
+                    <ul class="grid grid-cols-3 gap-3 text-center text-sm">
+                        <li class="p-3 rounded-xl glass-panel"><span class="font-bold text-forekey-cyanBright">AI-first</span><br><span class="text-xs text-slate-500">Architecture</span></li>
+                        <li class="p-3 rounded-xl glass-panel"><span class="font-bold text-forekey-amber">Global</span><br><span class="text-xs text-slate-500">Delivery</span></li>
+                        <li class="p-3 rounded-xl glass-panel"><span class="font-bold text-forekey-cyanBright">End-to-end</span><br><span class="text-xs text-slate-500">Build &amp; MLOps</span></li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl p-[1px] bg-gradient-to-br from-forekey-tealMid/50 via-forekey-cyan/25 to-forekey-amber/30 shadow-glow-card">
+                    <div class="rounded-2xl glass-panel p-8 sm:p-10 text-center border border-forekey-tealMid/20">
+                        <div class="inline-flex rounded-xl border border-forekey-cyan/15 bg-forekey-navy/60 px-4 py-3 shadow-inner">
+                            <img src="logo.png" alt="Forekey Technologies" class="w-full max-w-[280px] h-auto object-contain" width="280" height="72" loading="lazy">
+                        </div>
+                        <p class="mt-6 text-sm font-semibold tracking-wide text-forekey-cyanBright">AI-Powered Solutions</p>
+                        <p class="text-xs font-mono uppercase tracking-widest text-forekey-tealMid mt-2">Innovation in AI</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-24 bg-forekey-navy/70 border-t border-forekey-tealMid/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12">
+                <div>
+                    <p class="text-xs font-mono text-forekey-cyanBright uppercase tracking-widest mb-2">Contact</p>
+                    <h2 class="text-3xl font-extrabold text-white mb-4">Let&apos;s innovate together</h2>
+                    <p class="text-slate-300 text-sm sm:text-base mb-6">
+                        Tell us about your project. We typically respond within one business day.
+                    </p>
+                    <p class="text-sm text-slate-400 mb-2">Prefer email?</p>
+                    <a id="contact-email-link" href="mailto:hello@forekeytechnologies.com?subject=AI%20Consultation%20Request" class="inline-flex items-center gap-2 text-forekey-cyanBright font-semibold hover:underline">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span id="contact-email-display">hello@forekeytechnologies.com</span>
+                    </a>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-8 border border-forekey-tealMid/30">
+                    <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-2">
+                        <i data-lucide="send" class="w-5 h-5 text-forekey-cyan"></i>
+                        Request consultation
+                    </h3>
+
+                    <form id="contact-form" class="space-y-4" novalidate>
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+
+                        <div>
+                            <label for="full-name" class="block text-xs font-mono text-slate-400 uppercase mb-1.5">Name</label>
+                            <input type="text" id="full-name" name="name" required autocomplete="name" class="w-full px-4 py-3 rounded-xl bg-forekey-dark/80 border border-forekey-cyan/20 text-white text-sm focus:border-forekey-cyan focus:outline-none focus:ring-1 focus:ring-forekey-cyan">
+                        </div>
+                        <div>
+                            <label for="work-email" class="block text-xs font-mono text-slate-400 uppercase mb-1.5">Work email</label>
+                            <input type="email" id="work-email" name="email" required autocomplete="email" class="w-full px-4 py-3 rounded-xl bg-forekey-dark/80 border border-forekey-cyan/20 text-white text-sm focus:border-forekey-cyan focus:outline-none focus:ring-1 focus:ring-forekey-cyan">
+                        </div>
+                        <div>
+                            <label for="service-type" class="block text-xs font-mono text-slate-400 uppercase mb-1.5">Service</label>
+                            <select id="service-type" name="service" class="w-full px-4 py-3 rounded-xl bg-forekey-dark/80 border border-forekey-cyan/20 text-white text-sm focus:border-forekey-cyan focus:outline-none">
+                                <option>RAG &amp; knowledge bases</option>
+                                <option>AI agents</option>
+                                <option>Computer vision</option>
+                                <option>Web / mobile / custom software</option>
+                                <option>Cloud &amp; MLOps</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="project-notes" class="block text-xs font-mono text-slate-400 uppercase mb-1.5">Project details</label>
+                            <textarea id="project-notes" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-forekey-dark/80 border border-forekey-cyan/20 text-white text-sm resize-none focus:border-forekey-cyan focus:outline-none focus:ring-1 focus:ring-forekey-cyan"></textarea>
+                        </div>
+
+                        <button type="submit" id="contact-submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-forekey-teal to-forekey-cyan text-forekey-dark font-bold flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                            <span id="submit-label">Send message</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5" id="submit-icon"></i>
+                        </button>
+                    </form>
+
+                    <div id="form-alert-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm" role="status"></div>
+                    <div id="form-alert-error" class="hidden mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm" role="alert"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-10 border-t border-forekey-tealMid/15 bg-forekey-dark text-slate-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-semibold text-white tracking-wide">FOREKEY TECHNOLOGIES</p>
+            <nav class="flex flex-wrap justify-center gap-5 text-xs font-mono" aria-label="Footer">
+                <a href="#services" class="hover:text-forekey-cyanBright">Services</a>
+                <a href="#contact" class="hover:text-forekey-cyanBright">Contact</a>
+            </nav>
+            <p>&copy; <span id="current-year"></span> Forekey Technologies</p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== CONFIG (edit before GitHub Pages deploy) ==========
+        /** Formspree: https://formspree.io → New form → copy endpoint URL */
+        const FORMSPREEE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+        /** Public contact email (mailto fallback) */
+        const CONTACT_EMAIL = 'hello@forekeytechnologies.com';
+        // ================================================================
+
+        lucide.createIcons();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const emailLink = document.getElementById('contact-email-link');
+        const emailDisplay = document.getElementById('contact-email-display');
+        if (CONTACT_EMAIL && emailLink && emailDisplay) {
+            emailDisplay.textContent = CONTACT_EMAIL;
+            emailLink.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('AI Consultation Request');
+        }
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+        mobileMenuBtn?.addEventListener('click', () => {
+            const open = mobileMenu.classList.toggle('hidden') === false;
+            mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        const form = document.getElementById('contact-form');
+        const successEl = document.getElementById('form-alert-success');
+        const errorEl = document.getElementById('form-alert-error');
+        const submitBtn = document.getElementById('contact-submit');
+        const submitLabel = document.getElementById('submit-label');
+
+        function formspreeConfigured() {
+            return FORMSPREEE_ENDPOINT && !FORMSPREEE_ENDPOINT.includes('YOUR_FORM_ID');
+        }
+
+        form?.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            successEl?.classList.add('hidden');
+            errorEl?.classList.add('hidden');
+
+            if (!formspreeConfigured()) {
+                errorEl.textContent = 'Form is not connected yet. Email us directly using the address on the left, or add your Formspree endpoint in index.html.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitLabel.textContent = 'Sending…';
+
+            const payload = {
+                name: form.name.value,
+                email: form.email.value,
+                service: form.service.value,
+                message: form.message.value,
+                _subject: 'New consultation — Forekey Technologies (' + form.service.value + ')',
+            };
+
+            try {
+                const res = await fetch(FORMSPREEE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const data = await res.json().catch(() => ({}));
+
+                if (res.ok) {
+                    successEl.textContent = 'Thank you — your message was sent. We will get back to you soon.';
+                    successEl.classList.remove('hidden');
+                    form.reset();
+                } else {
+                    throw new Error(data.error || 'Submission failed. Please try again or email us directly.');
+                }
+            } catch (err) {
+                errorEl.textContent = err.message || 'Something went wrong. Please email us directly.';
+                errorEl.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitLabel.textContent = 'Send message';
+                lucide.createIcons();
+            }
+        });
+
+        window.addEventListener('load', () => {
+            const canvas = document.getElementById('neural-canvas');
+            if (!canvas?.parentElement) return;
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = canvas.parentElement.offsetWidth;
+            let h = canvas.height = canvas.parentElement.offsetHeight;
+            window.addEventListener('resize', () => {
+                w = canvas.width = canvas.parentElement.offsetWidth;
+                h = canvas.height = canvas.parentElement.offsetHeight;
+            });
+            const particles = Array.from({ length: Math.min(Math.floor(w / 28), 40) }, () => ({
+                x: Math.random() * w, y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.45, vy: (Math.random() - 0.5) * 0.45,
+                r: Math.random() * 1.5 + 0.8,
+            }));
+            (function loop() {
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > w) p.vx *= -1;
+                    if (p.y < 0 || p.y > h) p.vy *= -1;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(80, 161, 168, 0.45)'; ctx.fill();
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const q = particles[j];
+                        const d = Math.hypot(p.x - q.x, p.y - q.y);
+                        if (d < 120) {
+                            ctx.strokeStyle = `rgba(0, 240, 255, ${0.35 * (1 - d / 120)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(loop);
+            })();
+        });
+    </script>
+</body>
+</html>
