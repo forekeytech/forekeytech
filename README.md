@@ -15,34 +15,12 @@ Forekey Technologies builds intelligent, scalable digital products for teams wor
 
 ## Website
 
-### Live site (use this link)
-
-**https://forekeytech.github.io/forekeytech/**
-
-Repository: [github.com/forekeytech/forekeytech](https://github.com/forekeytech/forekeytech)
-
-### URLs that will **not** work
-
-| Wrong URL | Why |
-|-----------|-----|
-| `https://forkeytech.github.io/...` | Old username spelling — account is **`forekeytech`** (with **e**) |
-| `https://forekeytech.github.io/` | Root URL only works with a repo named **`forekeytech.github.io`**, not `forekeytech` |
-| Opening only `github.com/...` | That is the code repo, not the public website |
-
-### Shorter URL (optional)
-
-To use **https://forekeytech.github.io/** with no `/forekeytech/` path, create a public repo named **`forekeytech.github.io`**, copy these files to its `main` branch, and enable Pages on that repo.
-
-Open `index.html` locally anytime to preview without GitHub.
+[https://forekeytech.github.io/forekeytech/](https://forekeytech.github.io/forekeytech/)
 
 ## Contact
 
-- **Email:** [mjphp79@gmail.com](mailto:mjphp79@gmail.com)  
-- **Consultation:** Use the contact form on the website  
-
-## About this repository
-
-Source for the official Forekey Technologies marketing website (HTML, brand assets, and static content).
+- **Email:** [hello@forekeytechnologies.com](mailto:hello@forekeytechnologies.com)  
+- **Consultation:** Contact form on our website  
 
 ---
 
