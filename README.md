@@ -19,7 +19,7 @@ Forekey Technologies builds intelligent, scalable digital products for teams wor
 
 ## Contact
 
-- **Email:** [hello@forekeytechnologies.com](mailto:hello@forekeytechnologies.com)  
+- **Email:** [mjphp79@gmail.com](mailto:mjphp79@gmail.com)  
 - **Consultation:** Contact form on our website  
 
 ---
